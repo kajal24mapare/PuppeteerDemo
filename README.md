@@ -18,7 +18,7 @@ Demo App
    This script uses Puppeteer to launch a headless Chrome browser, open the HTML template, and generate a PDF file named output.pdf. Adjust the paths and options as needed.
 5. node GeneratePdf.js
 
-------------------------------------------------------- DYNAMIC CONTENT: ------------------------------------------------
+------------------------------------------------------- DYNAMIC CONTENT: ------------------------------------------------------
 To send parameters to an HTML file and generate a dynamic page based on those parameters, we'll need a combination of HTML, JavaScript, and possibly a server-side language. 
 
 ------------------------------------------------------- API: ------------------------------------------------------- 
