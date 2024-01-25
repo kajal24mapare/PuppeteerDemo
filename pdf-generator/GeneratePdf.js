@@ -5,7 +5,7 @@ const generatePDF = async () => {
   const page = await browser.newPage();
 
   // Load your HTML template
-  await page.goto(`file://${__dirname}/ReportTemplate.html`, {
+  await page.goto(`file://${__dirname}/ReportTemplate.html?name=KAJAL`, {
     waitUntil: "networkidle0",
   });
 
