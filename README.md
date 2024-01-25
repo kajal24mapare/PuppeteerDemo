@@ -2,7 +2,7 @@
 
 Demo App
 
-1. Install Node.js: Make sure you have Node.js installed on your machine. You can download it from here.
+1. Install Node.js: Make sure you have Node.js installed on your machine.
 2. Create a new project folder and initialize it with npm:
    mkdir pdf-generator
    cd pdf-generator
