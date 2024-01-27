@@ -1,4 +1,29 @@
 const puppeteer = require("puppeteer");
+const fs = require("fs");
+const path = require("path");
+
+const filename = "ReportTemplate.html";
+
+// Example function to read a file synchronously with query parameters
+function readFileSyncWithParameters(filename, queryParameters) {
+  const filePath = path.join(__dirname, filename);
+
+  try {
+    // Read the file synchronously
+    let htmlContent = fs.readFileSync(filePath, "utf-8");
+    // Apply query parameters to the content
+    for (const [param, value] of Object.entries(queryParameters)) {
+      const regex = new RegExp(`{${param}}`, "g");
+      htmlContent = htmlContent.replace(regex, value);
+    }
+
+    return htmlContent;
+  } catch (error) {
+    // Handle errors (e.g., file not found)
+    console.error("Error reading file:", error);
+    return null;
+  }
+}
 
 (async () => {
   const browser = await puppeteer.launch();
@@ -14,35 +39,28 @@ const puppeteer = require("puppeteer");
     );
   });
 
-  // Generate dynamic HTML based on the data
-  const dynamicHtml = `
-      <!DOCTYPE html>
-      <html lang="en">
-      <head>
-          <meta charset="UTF-8">
-          <meta name="viewport" content="width=device-width, initial-scale=1.0">
-          <title>${data.title}</title>
-      </head>
-      <body>
-          <h1>${data.title}</h1>
-          <p>${data.content}</p>
-      </body>
-      </html>
-    `;
+  try {
+    // Read the HTML content from an HTML file
+    const fileContent = readFileSyncWithParameters(filename, data);
 
-  // Save the generated HTML to a file or do further processing
-  // For simplicity, we'll just log it to the console
-  // console.log(dynamicHtml);
+    if (fileContent !== null) {
+      console.log(fileContent);
 
-  // Set the HTML content of the page
-  await page.setContent(dynamicHtml);
+      // Set the HTML content of the page
+      await page.setContent(fileContent);
 
-  // Generate PDF
-  await page.pdf({
-    path: "output.pdf",
-    format: "A4",
-    printBackground: true,
-  });
+      //  Generate PDF from the HTML content
+      await page.pdf({
+        path: "OutputX.pdf",
+        format: "A4",
+        printBackground: true,
+      });
+    }
 
-  await browser.close();
+    console.log("PDF generated successfully!");
+  } catch (error) {
+    console.error("Error:", error);
+  } finally {
+    await browser.close();
+  }
 })();

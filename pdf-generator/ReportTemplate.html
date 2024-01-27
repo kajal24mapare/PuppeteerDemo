@@ -10,22 +10,7 @@
   <body>
     <h1 id="dynamicContent">Dynamic Content Will Appear Here</h1>
     <!-- Your report content goes here -->
-
-    <script>
-      // Get parameters from the URL
-      const queryString = window.location.search;
-      const urlParams = new URLSearchParams(queryString);
-
-      // Check if a parameter named 'name' exists
-      if (urlParams.has("name")) {
-        // Get the value of the 'name' parameter
-        const name = urlParams.get("name");
-
-        // Update the content of the element with id 'dynamicContent'
-        document.getElementById(
-          "dynamicContent"
-        ).innerText = `Hello, ${name}! Welcome to the dynamic page.`;
-      }
-    </script>
+    <p>{title}</p>
+    <p>{content}</p>
   </body>
 </html>
