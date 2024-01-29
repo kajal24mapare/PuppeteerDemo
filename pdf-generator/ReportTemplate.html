@@ -5,12 +5,52 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Dynamic PDF Report</title>
-    <!-- Your CSS styles and other head elements go here -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+      canvas {
+        max-width: 600px;
+        max-height: 400px;
+      }
+    </style>
+    <script>
+      function generateChart(chartData) {
+        const ctx = document.getElementById("salesChart").getContext("2d");
+        const salesChart = new Chart(ctx, {
+          type: "bar",
+          data: chartData,
+          options: {
+            scales: {
+              y: {
+                beginAtZero: true,
+              },
+            },
+          },
+        });
+      }
+
+      // Function to get query parameters from the URL
+      function getQueryParameters() {
+        const queryString = window.location.search;
+        const urlParams = new URLSearchParams(queryString);
+        return Object.fromEntries(urlParams.entries());
+      }
+
+      // Function to update content dynamically
+      function updateContent() {
+        const { title, content, chartData } = getQueryParameters();
+        document.getElementById(
+          "dynamicContent"
+        ).innerText = `{title}, {content}`;
+        const data = `{chartData}`;
+        generateChart(JSON.parse(data));
+      }
+
+      // Call the updateContent function when the page loads
+      window.onload = updateContent;
+    </script>
   </head>
   <body>
-    <h1 id="dynamicContent">Dynamic Content Will Appear Here</h1>
-    <!-- Your report content goes here -->
-    <p>{title}</p>
-    <p>{content}</p>
+    <p id="dynamicContent"></p>
+    <canvas id="salesChart"></canvas>
   </body>
 </html>
