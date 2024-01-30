@@ -29,6 +29,7 @@ To send parameters to an HTML file and generate a dynamic page based on those pa
 ----------------------------- API: -------------------------------------------
 
 To hit a dummy API in Puppeteer and generate dynamic HTML based on the data received from the API, you can follow these steps:
+
 Set up a dummy API: 
 
 We can use online mock API services like JSONPlaceholder or create a simple Express server in Node.js for testing purposes.
