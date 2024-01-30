@@ -2,7 +2,7 @@
 
 Demo App
 
-------------------------------------------------------- BASIC SETUP: ------------------------------------------------------- 
+-------------------------- BASIC SETUP: -------------------
 
 1. Install Node.js: Make sure you have Node.js installed on your machine.
 2. Create a new project folder and initialize it with npm:
@@ -18,10 +18,10 @@ Demo App
    This script uses Puppeteer to launch a headless Chrome browser, open the HTML template, and generate a PDF file named output.pdf. Adjust the paths and options as needed.
 5. node GeneratePdf.js
 
-------------------------------------------------------- DYNAMIC CONTENT: -------------------------------------------------------------------------
+------------------------- DYNAMIC CONTENT: ---------------------------
 To send parameters to an HTML file and generate a dynamic page based on those parameters, we'll need a combination of HTML, JavaScript, and possibly a server-side language. 
 
-------------------------------------------------------- API: ------------------------------------------------------------------------------------------
+----------------------------- API: -------------------------------------------
 To hit a dummy API in Puppeteer and generate dynamic HTML based on the data received from the API, you can follow these steps:
 Set up a dummy API: We can use online mock API services like JSONPlaceholder or create a simple Express server in Node.js for testing purposes.
 
